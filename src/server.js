@@ -92,7 +92,7 @@ server.use('/openplatform', proxy({
 }));
 
 //express 读取静态文件
-server.use('/build', express.static(path.join(__dirname, '../../build')));
+server.use('', express.static(path.join(__dirname, '../build')));
 
 // nodejs原生读取静态文件
 /*

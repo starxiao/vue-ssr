@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <p>hello xiaoxx111111123123 !</p>
+        <p>hello xiaoxx!</p>
         <p>{{item}}</p>
     </div>
 </template>

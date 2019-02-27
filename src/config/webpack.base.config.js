@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
@@ -14,7 +15,6 @@ module.exports = {
         filename: '[name].[chunkhash].js',
     },
     module: {
-        noParse: /es6-promise\.js$/, 
         rules: [
             {
                 test: /\.vue$/,
@@ -30,12 +30,14 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                include: [path.resolve(__dirname, '../src')],
+                exclude: /node_modules/,
+                // include: path.resolve(__dirname, '../src'),
                 use: {
                     loader: 'babel-loader',
-                    options: {
-                        presets: ['es2015', ['vue-app']]
+                    options:{
+                        presets:['@babel/preset-env','@vue/babel-preset-app']
                     }
+
                 },
             },
             {
@@ -74,6 +76,7 @@ module.exports = {
     },
     plugins: isProd
     ? [
+        new VueLoaderPlugin(),
         new webpack.optimize.ModuleConcatenationPlugin(),
         new MiniCssExtractPlugin({
             filename: '[name].[hash].css',
@@ -81,6 +84,7 @@ module.exports = {
         })
       ]
     : [
+        new VueLoaderPlugin(),
         new FriendlyErrorsPlugin(),
         new MiniCssExtractPlugin({
             filename: '[name].css',
