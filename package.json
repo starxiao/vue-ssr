@@ -4,8 +4,8 @@
   "description": "vue + ssr ",
   "main": "index.js",
   "scripts": {
-    "client": "webpack --config src/config/webpack.client.config.js && node server.js",
-    "server": "webpack --config src/config/webpack.server.config.js && node server.js",
+    "client": "webpack --config src/config/webpack.client.config.js && node src/server.js",
+    "server": "webpack --config src/config/webpack.server.config.js && node src/server.js",
     "start": "cross-env NODE_ENV=production node src/server.js",
     "dev": "rimraf build && webpack --config src/config/webpack.client.config.js && webpack --config src/config/webpack.server.config.js && node src/server.js",
     "clean": "rimraf build",

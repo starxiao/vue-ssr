@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <p>hello xiaoxx!</p>
+        <p>hello xiaoxx111!</p>
         <p>{{item}}</p>
     </div>
 </template>
@@ -11,6 +11,9 @@
             return{
                 item: 0
             }
+        },
+        created(){
+            console.log(23);
         },
         mounted: function(){
             let a = 123123;
