@@ -3,12 +3,13 @@ const merege = require('webpack-merge');
 const base = require('./webpack.base.config.js');
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const isProd = process.env.NODE_ENV === 'production';
-
 module.exports = merege(base,{
     entry:['./src/entry-client.js'],
     plugins: [
-        new VueSSRClientPlugin()
+        new VueSSRClientPlugin(),
+        new HtmlWebpackPlugin()
     ],
 
     // low webapck 4.0.0

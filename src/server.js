@@ -4,12 +4,26 @@ const express = require('express');
 const server = express();
 const proxy = require('http-proxy-middleware');
 const {createBundleRenderer} = require('vue-server-renderer');
-
 const isProd = process.env.NODE_ENV === 'production';
 // generate json bundle  use Fs.readFileSync is error
-const bundle = require('../build/vue-ssr-server-bundle.json');
 
-const clientManifest = require('../build/vue-ssr-client-manifest.json');
+let bundle = '';
+try{
+    bundle = require('../build/vue-ssr-server-bundle.json');
+}catch(err){
+    console.log(err);
+}
+// const bundle = require('../build/vue-ssr-server-bundle.json');
+
+let clientManifest = '';
+try{
+
+    clientManifest = require('../build/vue-ssr-client-manifest.json');
+}catch(err){
+    console.log(err);
+}
+
+// const clientManifest = require('../build/vue-ssr-client-manifest.json');
 
 const template = Fs.readFileSync(path.resolve(__dirname,'./static/index.template.html'),'utf8');
 

@@ -4,18 +4,17 @@
   "description": "vue + ssr ",
   "main": "index.js",
   "scripts": {
-    "client": "webpack --config src/config/webpack.client.config.js && node src/server.js",
-    "server": "webpack --config src/config/webpack.server.config.js && node src/server.js",
-    "start": "cross-env NODE_ENV=production node src/server.js",
-    "dev": "rimraf build && webpack --config src/config/webpack.client.config.js && webpack --config src/config/webpack.server.config.js && node src/server.js",
     "clean": "rimraf build",
+    "client": "npm run clean && webpack --config src/config/webpack.client.config.js",
+    "server": "npm run clean && webpack --config src/config/webpack.server.config.js && node src/server.js",
+    "dev": "rimraf build && webpack --config src/config/webpack.client.config.js && webpack --config src/config/webpack.server.config.js && node src/server.js",
+    "start": "cross-env NODE_ENV=production node src/server.js",
     "build:client": "cross-env NODE_ENV=production webpack --config src/config/webpack.client.config.js",
     "build:server": "cross-env NODE_ENV=production webpack --config src/config/webpack.server.config.js",
-    "build": "rimraf build && npm run build:client && npm run build:server && node src/server.js"
+    "build": "rimraf build && npm run build:client && npm run build:server && npm run start"
   },
   "author": "xiaoxx",
   "license": "ISC",
-
   "devDependencies": {
     "chokidar": "^2.1.1",
     "friendly-errors-webpack-plugin": "^1.7.0",
@@ -36,6 +35,7 @@
     "css-loader": "^1.0.0",
     "express": "^4.16.3",
     "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.4.2",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "style-loader": "^0.23.0",
