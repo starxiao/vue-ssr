@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+const path = require('path');
 const merege = require('webpack-merge');
 const base = require('./webpack.base.config.js');
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
@@ -9,15 +9,16 @@ module.exports = merege(base,{
     entry:['./src/entry-client.js'],
     plugins: [
         new VueSSRClientPlugin(),
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname,'../static/index.template.client.html')
+        })
     ],
 
     // low webapck 4.0.0
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: "manifest",
     //   minChunks: Infinity
-    optimization:
-    isProd?{
+    optimization:{
         minimize: true,
         minimizer: [new OptimizeCSSAssetsPlugin({})],
         runtimeChunk: {
@@ -41,5 +42,5 @@ module.exports = merege(base,{
                 }
             }
         }
-    }:{},
+    }
 })

@@ -8,7 +8,6 @@
 		mounted: function(){
 			const a = 123123;
 			console.log(a);
-
 			console.log(1);
 		}
 	}

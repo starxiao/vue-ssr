@@ -1,17 +1,17 @@
 {
   "name": "vue-ssr-xiaoxx",
   "version": "1.0.0",
-  "description": "vue + ssr ",
+  "description": "vue + ssr",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf build",
-    "client": "npm run clean && webpack --config src/config/webpack.client.config.js",
-    "server": "npm run clean && webpack --config src/config/webpack.server.config.js && node src/server.js",
-    "dev": "rimraf build && webpack --config src/config/webpack.client.config.js && webpack --config src/config/webpack.server.config.js && node src/server.js",
+    "clean": "rimraf build/*",
+    "dev": "node src/server.js",
     "start": "cross-env NODE_ENV=production node src/server.js",
+    "client": "cnpm run clean && webpack --config src/config/webpack.client.config.js",
+    "server": "webpack --config src/config/webpack.server.config.js",
     "build:client": "cross-env NODE_ENV=production webpack --config src/config/webpack.client.config.js",
     "build:server": "cross-env NODE_ENV=production webpack --config src/config/webpack.server.config.js",
-    "build": "rimraf build && npm run build:client && npm run build:server && npm run start"
+    "build": "cnpm run clean && npm run build:client && npm run build:server"
   },
   "author": "xiaoxx",
   "license": "ISC",
