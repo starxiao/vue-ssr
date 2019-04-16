@@ -65,7 +65,7 @@ function render(req,res){
         }
     }
 
-    if(req.url.indexOf('local') > -1){   
+    if (req.query.render === 'local'){   
         res.sendFile(path.join(__dirname, '../build/index.html'));
         return true;
     }
